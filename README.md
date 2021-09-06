@@ -1,4 +1,4 @@
-# Note app from terminal
+# Weather app from terminal
 
 A small node.js project from Udemy course to know in real time the weather.
 
