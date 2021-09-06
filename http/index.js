@@ -1,14 +1,15 @@
 const request = require('postman-request');
 
-const get = (url, callback) => {
-    request(url, (error, response, body) => {
+const get = (route, callback) => {
+    request(route, (error, response, body) => {
         if (error) {
             callback('error: ', error, '');
         }
-        if (response.statusCode >= 203) {
-            callback(response.statusCode, '');
+        const { statusCode } = response;
+        if (statusCode >= 203) {
+            callback(statusCode, '');
         }
-        if (response && response.statusCode === 200) {
+        if (response && statusCode === 200) {
             callback(null, JSON.parse(body))
         }
     }

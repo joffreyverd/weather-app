@@ -2,18 +2,19 @@ const geocode = require('./utils/geocode');
 const forecast = require('./utils/forecast');
 
 const address = encodeURIComponent(process.argv[2]);
+if (!address) {
+    return console.log('Please provide an adress');
+}
 
-geocode(address, (error, geocodeData) => {
+geocode(address, (error, { latitude, longitude, location } = {}) => {
     if (error) {
         return console.log(error);
     }
-    const options = '&query='
-        + geocodeData.latitude + ',' + geocodeData.longitude;
-    forecast(options, (error, forecastData) => {
+    forecast(latitude, longitude, (error, forecastData) => {
         if (error) {
             return console.log(error);
         }
-        console.log('It is currently ' + forecastData.current.temperature
-            + ' degrees out in ' + geocodeData.adress);
+        const { temperature } = forecastData.current;
+        console.log('It is currently ' + temperature + ' degrees out in ' + location);
     })
 });

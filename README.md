@@ -11,5 +11,5 @@ npm install
 
 #### Get the current temperature in a specific place
 ```sh
-node app.js <cityName>
+node app.js "city"
 ```
