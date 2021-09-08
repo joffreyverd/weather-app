@@ -9,6 +9,12 @@ npm install
 
 ### Usage
 ```sh
-node src/app.js
+# node
+npm run start
+```
+
+```sh
+# nodemon
+npm run dev
 ```
 Go on http://localhost:3000
