@@ -14,7 +14,7 @@ weatherForm.addEventListener('submit', (event) => {
 
     // The fetch API is only available in client-side javascript
     // Callbacks are passed chaining a "then" to "fetch"
-    fetch('http://localhost:3000/weather?location=' + location).then((response) => {
+    fetch('/weather?location=' + location).then((response) => {
         if (response.status > 203) {
             return error.textContent = 'Unable to find location, please try again!';
         }
