@@ -8,4 +8,7 @@ npm install
 ```
 
 ### Usage
+```sh
+node src/app.js
+```
 Go on http://localhost:3000
