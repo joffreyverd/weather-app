@@ -1,6 +1,6 @@
-# Weather app from terminal
+# Weather app
 
-A small node.js project from Udemy course to know in real time the weather.
+A small node.js project from Udemy course to know weather in real time.
 
 ### Install dependencies
 ```sh
@@ -8,8 +8,4 @@ npm install
 ```
 
 ### Usage
-
-#### Get the current temperature in a specific place
-```sh
-node app.js "city"
-```
+Go on http://localhost:3000

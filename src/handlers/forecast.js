@@ -5,7 +5,10 @@ const forecast = (latitude, longitude, callback) => {
     const route = 'http://api.weatherstack.com/current?access_key='
         + token + '&query=' + latitude + ',' + longitude;
     get(route, (error, data) => {
-        callback(error, data);
+        if (error || !data) {
+            return callback('Unable to find location', {});
+        }
+        return callback(error, data);
     })
 }
 

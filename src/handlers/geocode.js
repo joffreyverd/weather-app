@@ -5,8 +5,15 @@ const geocode = (location, callback) => {
     const route = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
         + location + '.json?access_token=' + token + '&limit=1';
     get(route, (error, data) => {
+        if (error || data.features.length === 0) {
+            return callback('Unable to connect to location services!', {
+                latitude: null,
+                longitude: null,
+                location: null,
+            });
+        }
         const { center, place_name: location } = data.features[0];
-        callback(error, {
+        return callback(error, {
             latitude: center[1],
             longitude: center[0],
             location,
