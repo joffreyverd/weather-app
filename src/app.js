@@ -50,19 +50,17 @@ app.get('/weather', (req, res) => {
         });
     }
     const city = encodeURIComponent(location);
-    geocode(city, (error, { latitude, longitude, location } = {}) => {
-        if (error) {
-            return res.status(500).send({ message: error });
-        }
-        forecast(latitude, longitude, (error, forecastData) => {
-            if (error) {
-                return res.status(500).send({ message: error });
-            }
+    geocode(city).then((result) => {
+        const { latitude, longitude } = result;
+        forecast(latitude, longitude).then((forecastData) => {
             const { temperature, weather_icons: icon } = forecastData.current;
             res.status(200).send({ temperature, location, icon: icon[0] });
-        })
+        }).catch((e) => {
+            return res.status(500).send({ message: e });
+        });
+    }).catch((e) => {
+        return res.status(500).send({ message: e });
     });
-
 });
 
 app.get('*', (req, res) => {
